@@ -35,13 +35,6 @@ app.post('/', function(req, res) {
             if (data == undefined) {
                 res.render('index', { weather: null, error: 'Error, please try again' });
             } else {
-
-
-                // for (key in data.list) {
-                //     for (x in data.list[key]) {
-                //         let l = data.list[key].dt;  
-                //     }
-                // }
                 const unikDays = {};
                 for (let i = 0; i < data.list.length; i++) {
                     const date = new Date(data.list[i].dt_txt);
@@ -49,10 +42,15 @@ app.post('/', function(req, res) {
                         unikDays[date.getDate()] = data.list[i];
                     }
                 }
-                console.log(unikDays);
+                let dayKeys = Object.keys(unikDays);
 
+                for (let k = 0; k < dayKeys.length; k++) {
+                    console.log(new Date(unikDays[dayKeys[k]].dt * 1000).getDay());
+                    console.log(unikDays[dayKeys[k]].weather[0].icon);
+                }
 
-
+                // console.log(new Date(unikDays[23].dt * 1000).getDay());
+                // console.log(unikDays[23].weather[0].icon);
 
                 let weatherText = `It's id ${data.name} 
                  ${data.list[1].weather[0].icon}
