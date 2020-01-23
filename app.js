@@ -34,7 +34,7 @@ app.post('/', function(req, res) {
             res.render('index', { weather: null, error: 'Error, please try again' });
         } else {
             let data = JSON.parse(body)
-            if (data == undefined) {
+            if (data == undefined || data.cod !== '200') {
                 res.render('index', { weather: null, error: 'Error, please try again' });
             } else {
                 const unikDays = {};
@@ -44,25 +44,22 @@ app.post('/', function(req, res) {
                         unikDays[date.getDate()] = data.list[i];
                     }
                 }
-                let dayKeys = Object.keys(unikDays);
 
+                let dayKeys = Object.keys(unikDays);
+                const dayNameObj = {};
+                const weatherImageObj = {};
                 for (let k = 0; k < dayKeys.length; k++) {
                     let numberDay = `${new Date(unikDays[dayKeys[k]].dt * 1000).getDay()}`;
-                    dayName = weekday[numberDay];
-                    weatherImage = `${imageUri}${unikDays[dayKeys[k]].weather[0].icon}${imageFormat}`;
-
-                    console.log(dayName);
-                    console.log(weatherImage);
+                    dayNameObj[k] = weekday[numberDay];
+                    weatherImageObj[k] = `${imageUri}${unikDays[dayKeys[k]].weather[0].icon}${imageFormat}`;
                 }
 
-                // let weatherText = `It's id ${data.name} 
-                //  ${data.list[1].weather[0].icon}
-                //   ${(new Date(data.list[0].dt * 1000)).getDay()}`;
+                let dayName = Object.values(dayNameObj);
+                let weatherImage = Object.values(weatherImageObj);
 
-                //let numberDay = `${(new Date(data.list[0].dt * 1000)).getDay()}`;
-                //let dayName = weekday[numberDay];
-                res.render('index', { weather: weatherText, error: null });
-                //res.send('')
+                console.log(dayName);
+                console.log(weatherImage);
+                res.render('index', { weather: dayName, error: null });
             }
         }
     });
