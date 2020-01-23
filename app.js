@@ -35,13 +35,33 @@ app.post('/', function(req, res) {
             if (data == undefined) {
                 res.render('index', { weather: null, error: 'Error, please try again' });
             } else {
+
+
+                // for (key in data.list) {
+                //     for (x in data.list[key]) {
+                //         let l = data.list[key].dt;  
+                //     }
+                // }
+                const unikDays = {};
+                for (let i = 0; i < data.list.length; i++) {
+                    const date = new Date(data.list[i].dt_txt);
+                    if (!unikDays[date.getDate()]) {
+                        unikDays[date.getDate()] = data.list[i];
+                    }
+                }
+                console.log(unikDays);
+
+
+
+
                 let weatherText = `It's id ${data.name} 
-                 ${data.list[0].weather[0].icon}
+                 ${data.list[1].weather[0].icon}
                   ${(new Date(data.list[0].dt * 1000)).getDay()}`;
 
                 //let numberDay = `${(new Date(data.list[0].dt * 1000)).getDay()}`;
                 //let dayName = weekday[numberDay];
                 res.render('index', { weather: weatherText, error: null });
+                //res.send('')
             }
         }
     });
