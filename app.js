@@ -59,7 +59,9 @@ app.post('/', function(req, res) {
 
                 console.log(dayName);
                 console.log(weatherImage);
-                res.render('index', { weather: dayName, error: null });
+
+                res.render('index', { weather: dayName, weatherImage, error: null });
+
             }
         }
     });

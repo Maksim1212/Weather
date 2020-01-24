@@ -13,21 +13,37 @@
         <fieldset>
             <form action="/" method="post">
                 <input name="city" type="text" class="ghost-input" placeholder="Enter a City" required>
-                <input type="submit" class="ghost-button" value="Get Weather">
+                <input type="submit" class="ghost-button" value="GET WEATHER">
             </form>
-            <% if(weather !== null){ %>
-                <p>
-                    <%= weather %>
-                        <img src="https://openweathermap.org/img/wn/04n@2x.png">
-                </p>
-                <% } %>
 
-                    <% if(error !== null){ %>
-                        <p>
-                            <%= error %>
-                        </p>
-                        <% } %>
         </fieldset>
+        <% if(weather !== null){ %>
+            <table>
+                <% for( i = 0; i < weather.length; i++){ %>
+
+                    <td class="days">
+                        <%= weather[i] %>
+                    </td>
+                    <% } %>
+            </table>
+
+            <table width="750" cellpadding="5" cellspacing="0">
+                <% for(i=0; i < weatherImage.length; i++ ){ %>
+
+                    <img src="
+                            <%= weatherImage[i] %>
+                        ">
+
+                    <% } %>
+            </table>
+
+            <% } %>
+
+                <% if(error !== null){ %>
+                    <p>
+                        <%= error %>
+                    </p>
+                    <% } %>
     </div>
 </body>
 
