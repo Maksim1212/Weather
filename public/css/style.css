@@ -94,6 +94,7 @@ p {
     min-width: 80px;
     padding: 10px;
     border-radius: 2px;
+    font-weight: bold;
 }
 
 .results {
