@@ -33,15 +33,15 @@ app.post('/', function(req, res) {
         if (err) {
             res.render('index', { weather: null, error: 'Error, please try again' });
         } else {
-            let data = JSON.parse(body)
+            let data = JSON.parse(body) //parse JSON data
             if (data == undefined || data.cod !== '200') {
                 res.render('index', { weather: null, error: 'Error, please try again' });
             } else {
-                const unikDays = {};
+                const unikDays = {}; //object with sorted days
                 for (let i = 0; i < data.list.length; i++) {
                     const date = new Date(data.list[i].dt_txt);
                     if (!unikDays[date.getDate()]) {
-                        unikDays[date.getDate()] = data.list[i];
+                        unikDays[date.getDate()] = data.list[i] //sorted days
                     }
                 }
 
@@ -49,19 +49,18 @@ app.post('/', function(req, res) {
                 const dayNameObj = {};
                 const weatherImageObj = {};
                 for (let k = 0; k < dayKeys.length; k++) {
-                    let numberDay = `${new Date(unikDays[dayKeys[k]].dt * 1000).getDay()}`;
-                    dayNameObj[k] = weekday[numberDay];
-                    weatherImageObj[k] = `${imageUri}${unikDays[dayKeys[k]].weather[0].icon}${imageFormat}`;
+                    let numberDay = `${new Date(unikDays[dayKeys[k]].dt * 1000).getDay()}`; //get the day number from unix format
+                    dayNameObj[k] = weekday[numberDay]; //give the numbers of the day names
+                    weatherImageObj[k] = `${imageUri}${unikDays[dayKeys[k]].weather[0].icon}${imageFormat}`; //form the address of the picture
                 }
 
-                let dayName = Object.values(dayNameObj);
-                let weatherImage = Object.values(weatherImageObj);
+                let dayName = Object.values(dayNameObj); //take values ​​from the object with the names of the days
+                let weatherImage = Object.values(weatherImageObj); //take values ​​from the object with the images uri
 
-                console.log(dayName);
-                console.log(weatherImage);
+                console.log(dayName); // log result day name 
+                console.log(weatherImage); // log image address
 
-                res.render('index', { weather: dayName, weatherImage, error: null });
-
+                res.render('index', { weather: dayName, weatherImage, error: null }); //send data to view
             }
         }
     });

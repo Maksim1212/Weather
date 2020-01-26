@@ -17,33 +17,35 @@
             </form>
 
         </fieldset>
-        <% if(weather !== null){ %>
-            <table>
-                <% for( i = 0; i < weather.length; i++){ %>
+        <div class="results">
+            <% if(weather !== null){ %>
+                <table class="weekDays">
+                    <% for( i = 0; i < weather.length; i++){ %>
 
-                    <td class="days">
-                        <%= weather[i] %>
-                    </td>
-                    <% } %>
-            </table>
+                        <td class="days">
+                            <%= weather[i] %>
+                        </td>
+                        <% } %>
+                </table>
 
-            <table width="750" cellpadding="5" cellspacing="0">
-                <% for(i=0; i < weatherImage.length; i++ ){ %>
+                <table class="weatherImages">
+                    <% for(i=0; i < weatherImage.length; i++ ){ %>
 
-                    <img src="
+                        <td class="images"> <img src="
                             <%= weatherImage[i] %>
                         ">
+                        </td>
+                        <% } %>
+                </table>
 
-                    <% } %>
-            </table>
+                <% } %>
 
-            <% } %>
-
-                <% if(error !== null){ %>
-                    <p>
-                        <%= error %>
-                    </p>
-                    <% } %>
+                    <% if(error !== null){ %>
+                        <p>
+                            <%= error %>
+                        </p>
+                        <% } %>
+        </div>
     </div>
 </body>
 
