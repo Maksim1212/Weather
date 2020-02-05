@@ -1,16 +1,29 @@
 {
-    "name": "weatherapp",
-    "version": "1.0.0",
-    "private": true,
-    "description": "simple Weather App with Node.js",
-    "main": "index.js",
-    "scripts": {
-        "test": "echo \"Error: no test specified\" && exit 1"
-    },
-    "author": "MDyachenko",
-    "license": "ISC",
-    "dependencies": {
-        "request": "2.88.0",
-        "express": "4.17.1"
-    }
+  "name": "weatherapp",
+  "version": "1.0.0",
+  "private": true,
+  "description": "simple Weather App with Node.js",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "MDyachenko",
+  "license": "ISC",
+  "dependencies": {
+    "body-parser": "^1.19.0",
+    "express": "4.17.1",
+    "request": "2.88.0"
+  },
+  "devDependencies": {
+    "babel-preset-airbnb": "^4.4.0",
+    "eslint": "^6.8.0",
+    "eslint-config-airbnb-base": "^14.0.0",
+    "eslint-config-node": "^4.0.0",
+    "eslint-config-prettier": "^6.10.0",
+    "eslint-plugin-import": "^2.20.1",
+    "eslint-plugin-node": "^11.0.0",
+    "eslint-plugin-prettier": "^3.1.2",
+    "nodemon": "^2.0.2",
+    "prettier": "^1.19.1"
+  }
 }
